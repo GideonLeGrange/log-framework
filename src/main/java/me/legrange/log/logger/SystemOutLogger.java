@@ -1,4 +1,7 @@
-package me.legrange.log;
+package me.legrange.log.logger;
+
+import me.legrange.log.Event;
+import me.legrange.log.Logger;
 
 /** 
  * A basic logger implementation that just prints to System.out. Really meant to be used

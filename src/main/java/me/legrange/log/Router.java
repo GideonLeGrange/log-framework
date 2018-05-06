@@ -1,5 +1,6 @@
 package me.legrange.log;
 
+import me.legrange.log.logger.SystemOutLogger;
 import java.util.HashMap;
 import java.util.Map;
 

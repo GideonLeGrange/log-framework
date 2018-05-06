@@ -64,7 +64,7 @@ public final class Log {
     public static void debug(String fmt, Object... args) {
         log(DEBUG, fmt, args);
     }
-
+    
     /**
      * Log an event with the given level event.
      *

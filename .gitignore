@@ -9,3 +9,4 @@ target/
 
 # Netbeans 
 nb-configuration.xml
+nbactions.xml
