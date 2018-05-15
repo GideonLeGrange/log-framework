@@ -9,7 +9,7 @@ final class PackageLogger {
 
     private final String pack;
     private final Logger logger;
-    private final Level level;
+    private Level level;
 
     PackageLogger(String pack, Logger logger, Level level) {
         this.pack = pack;
@@ -28,5 +28,11 @@ final class PackageLogger {
     Level getLevel() {
         return level;
     }
+
+  void setLevel(Level level) {
+        this.level = level;
+    }
+    
+    
 
 }

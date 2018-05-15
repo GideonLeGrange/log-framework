@@ -8,7 +8,7 @@ import me.legrange.log.Logger;
  * for testing and as last resort. 
  * @author gideon
  */
-public final class SystemOutLogger implements Logger {
+public class SystemOutLogger implements Logger {
 
     @Override
     public void log(Event entry) {
