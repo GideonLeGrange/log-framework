@@ -1,4 +1,4 @@
-package me.legrange.log;
+package za.co.adept.log;
 
 import java.util.Date;
 import java.util.Optional;

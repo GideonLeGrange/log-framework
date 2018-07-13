@@ -1,4 +1,4 @@
-package me.legrange.log;
+package za.co.adept.log;
 
 import java.io.FileNotFoundException;
 import java.io.PrintStream;

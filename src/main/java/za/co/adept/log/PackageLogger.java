@@ -1,4 +1,4 @@
-package me.legrange.log;
+package za.co.adept.log;
 
 /**
  * Container class that controls logging for a package.

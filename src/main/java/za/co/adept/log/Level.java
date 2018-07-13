@@ -1,4 +1,4 @@
-package me.legrange.log;
+package za.co.adept.log;
 
 /**
  * A logging level 

@@ -1,7 +1,7 @@
-package me.legrange.log;
+package za.co.adept.log;
 
 import static java.lang.String.format;
-import me.legrange.log.logger.SystemOutLogger;
+import za.co.adept.log.logger.SystemOutLogger;
 import java.util.HashMap;
 import java.util.Map;
 

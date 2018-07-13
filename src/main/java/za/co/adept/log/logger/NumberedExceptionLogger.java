@@ -1,8 +1,8 @@
-package me.legrange.log.logger;
+package za.co.adept.log.logger;
 
 import static java.lang.String.format;
-import me.legrange.log.Event;
-import me.legrange.log.Logger;
+import za.co.adept.log.Event;
+import za.co.adept.log.Logger;
 
 /**
  * A logger implementation that numbers exceptions and logs them with the number to the default logger, while 

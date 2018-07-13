@@ -1,4 +1,4 @@
-package me.legrange.log;
+package za.co.adept.log;
 
 /**
  * A logger that logs in a specific way. Implement this to manipulate how logged 
