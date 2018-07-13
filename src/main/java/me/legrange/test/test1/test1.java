@@ -1,5 +1,6 @@
 package me.legrange.test.test1;
 
+import static me.legrange.log.Level.DEBUG;
 import me.legrange.log.Log;
 import static me.legrange.log.Log.critical;
 import static me.legrange.log.Log.debug;
@@ -14,7 +15,7 @@ import static me.legrange.log.Log.warning;
 public class test1 {
 
     public test1() {
-//        Log.setLevel(DEBUG);
+      Log.setLevel(DEBUG);
     }
 
     public void t1() {

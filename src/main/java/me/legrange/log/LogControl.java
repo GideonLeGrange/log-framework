@@ -28,12 +28,7 @@ public class LogControl {
             }
         });
     }
-    
-    static LogControl getLogControl() { 
-        if (INSTANCE != null) {
-            
-        }
-    }
+   
 
     /**
      * Set the logger for the package calling the logger.

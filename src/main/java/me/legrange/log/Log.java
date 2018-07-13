@@ -204,7 +204,6 @@ public final class Log {
     private static void log(Level level, Supplier<Event> entry) {
         PackageLogger pl = Router.getInstance().route();
         if (level.code() <= pl.getLevel().code()) {
-            String text;
             try {
                 pl.getLogger().log(entry.get());
             } catch (Throwable ex) {

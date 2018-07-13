@@ -29,12 +29,21 @@ public class test {
     }
 
     private void t1() {
-        debug("t1: debug");
+        debug("t1: debug %s", "Hello");
         info("t1: info ");
         warning("t1: warning");
         error("t1: error ");
         critical("t1: critical");
         
+        for (int i = 0; i < 1000; ++i) {
+            // some stuff 
+            debug(() ->  makeDebugMessage());
+        }
+        
+    }
+    
+    private String makeDebugMessage() {
+        return "info";
     }
 
     
