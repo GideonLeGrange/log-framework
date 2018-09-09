@@ -73,7 +73,7 @@ public final class Log {
      * @param args The message arguments
      */
     public static void error(Throwable ex, String fmt, Object... args) {
-        log(ERROR, ex, ex.getMessage(), fmt, args);
+        log(ERROR, ex, fmt, args);
     }
 
     /**
