@@ -34,5 +34,5 @@
             </extension>
         </extensions>
     </build>
-    
+    <name>Logging Libray</name>
 </project>

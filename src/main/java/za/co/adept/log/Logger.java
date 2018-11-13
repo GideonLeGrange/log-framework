@@ -13,6 +13,6 @@ public interface Logger {
      * @param entry The logged event
      */
     void log(Event entry);
- 
+    
     
 }

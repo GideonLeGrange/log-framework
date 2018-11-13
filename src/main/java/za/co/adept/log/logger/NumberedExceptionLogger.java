@@ -46,7 +46,7 @@ public class NumberedExceptionLogger implements Logger {
 
     protected final PrintWriter openFile(String fileName) throws LoggerException {
         try {
-            return new PrintWriter(new FileWriter(fileName));
+            return new PrintWriter(new FileWriter(fileName, true));
         } catch (IOException ex) {
             throw new LoggerException(format("Error opening log file '%s': %s", fileName, ex.getMessage()), ex);
         }
