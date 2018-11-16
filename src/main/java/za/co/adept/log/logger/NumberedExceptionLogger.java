@@ -42,6 +42,7 @@ public class NumberedExceptionLogger implements Logger {
     private void writeToFile(int id, Event entry) {
         out.printf("[#%d - %s]\n", msgId, entry.getTimestamp());
         entry.getThrowable().get().printStackTrace(out);
+        out.flush();
     }
 
     protected final PrintWriter openFile(String fileName) throws LoggerException {
