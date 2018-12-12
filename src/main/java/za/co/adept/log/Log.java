@@ -62,7 +62,12 @@ public final class Log {
      * @param ex The exception
      */
     public static void error(Throwable ex) {
-        log(ERROR, ex, ex.getMessage());
+        if (ex.getMessage() != null) {
+            log(ERROR, ex, ex.getMessage());
+        }
+        else {
+            log(ERROR, ex, "(null)");
+        }
     }
 
     /**
