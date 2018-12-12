@@ -62,12 +62,7 @@ public final class Log {
      * @param ex The exception
      */
     public static void error(Throwable ex) {
-        if (ex.getMessage() != null) {
             log(ERROR, ex, ex.getMessage());
-        }
-        else {
-            log(ERROR, ex, "(null)");
-        }
     }
 
     /**
@@ -196,6 +191,7 @@ public final class Log {
      * @param ex The exception that we're logging
      */
     private static void log(Level level, Throwable ex, String fmt, Object... args) {
+        final String format =  (fmt != null) ? fmt : "(null)";
         log(level, () -> new Event(format(fmt, args), new Date(), level, ex));
     }
 
