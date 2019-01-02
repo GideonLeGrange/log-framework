@@ -1,9 +1,11 @@
 package za.co.adept.log;
 
 import static java.lang.String.format;
-import za.co.adept.log.logger.SystemOutLogger;
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
+import za.co.adept.log.logger.SystemOutLogger;
 
 /**
  * This class works out where to route log requests.
@@ -14,7 +16,7 @@ final class Router extends SecurityManager {
 
     private static final Router INSTANCE = new Router();
     private PackageLogger DEFAULT = new PackageLogger("", new SystemOutLogger(), Level.INFO);
-    private final Map<String, PackageLogger> packageLoggers = new HashMap<>();
+    private  Map<String, PackageLogger> packageLoggers = new HashMap<>();
 
     /**
      * Get the singleton router instance.
@@ -46,12 +48,16 @@ final class Router extends SecurityManager {
      *
      * @param def The logger
      */
-    void setDefaultLogger(Logger def) {
-        String from = calledFromPackage();
+    synchronized void setDefaultLogger(Logger def) {
         if (!DEFAULT.getPack().equals("")) {
             throw new IllegalStateException(format("The default logger is already set. It was called from %s. Either your application or that library is calling setDefaultLogger() incorrectly", DEFAULT.getPack()));
         }
-        DEFAULT = new PackageLogger(from, def, Level.INFO);
+        List<String> toRemove = new LinkedList();
+        packageLoggers.entrySet().stream().filter((ent) -> (ent.getValue() == DEFAULT)).forEachOrdered((ent) -> {
+            toRemove.add(ent.getKey());
+        });
+        toRemove.forEach(pack -> packageLoggers.remove(pack));
+        DEFAULT = new PackageLogger(calledFromPackage(), def, Level.INFO);
     }
     
     /** 
@@ -65,7 +71,7 @@ final class Router extends SecurityManager {
      * 
      * @param logger The logger to use.
      */
-    void setLogger(Logger logger) {
+    synchronized void setLogger(Logger logger) {
         String pkg = calledFromPackage();
         PackageLogger forPkg = determineLoggerFor(pkg);
         setLogger(pkg, new PackageLogger(pkg, logger, forPkg.getLevel()));        
