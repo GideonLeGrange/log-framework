@@ -8,6 +8,8 @@ import static za.co.adept.log.Level.INFO;
 import static za.co.adept.log.Level.WARNING;
 import static java.lang.String.format;
 import java.util.Date;
+import java.util.StringJoiner;
+import static java.lang.String.format;
 
 /**
  * The log interface. Use this class to add logging to your code.
@@ -191,8 +193,8 @@ public final class Log {
      * @param ex The exception that we're logging
      */
     private static void log(Level level, Throwable ex, String fmt, Object... args) {
-        final String format =  (fmt != null) ? fmt : "(null)";
-        log(level, () -> new Event(format(fmt, args), new Date(), level, ex));
+        final String strFmt =  (fmt != null) ? fmt : "";
+        log(level, () -> new Event(format(strFmt, args), new Date(), level, ex));
     }
 
     /**
