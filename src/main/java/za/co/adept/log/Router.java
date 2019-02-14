@@ -16,7 +16,7 @@ final class Router extends SecurityManager {
 
     private static final Router INSTANCE = new Router();
     private PackageLogger DEFAULT = new PackageLogger("", new SystemOutLogger(), Level.INFO);
-    private  Map<String, PackageLogger> packageLoggers = new HashMap<>();
+    private Map<String, PackageLogger> packageLoggers = new HashMap<>();
 
     /**
      * Get the singleton router instance.
@@ -59,47 +59,48 @@ final class Router extends SecurityManager {
         toRemove.forEach(pack -> packageLoggers.remove(pack));
         DEFAULT = new PackageLogger(calledFromPackage(), def, Level.INFO);
     }
-    
-    /** 
-     * Set the default (last resort) logging level on which to filter message. 
+
+    /**
+     * Set the default (last resort) logging level on which to filter message.
      */
     void setDefaultLevel(Level level) {
         DEFAULT.setLevel(level);
     }
-    
-    /** Set the logger for the package calling the method. 
-     * 
+
+    /**
+     * Set the logger for the package calling the method.
+     *
      * @param logger The logger to use.
      */
     synchronized void setLogger(Logger logger) {
         String pkg = calledFromPackage();
         PackageLogger forPkg = determineLoggerFor(pkg);
-        setLogger(pkg, new PackageLogger(pkg, logger, forPkg.getLevel()));        
+        setLogger(pkg, new PackageLogger(pkg, logger, forPkg.getLevel()));
     }
 
-    /** Set the log level for the package calling the method. 
-     * 
-     * @param level The required log level. 
+    /**
+     * Set the log level for the package calling the method.
+     *
+     * @param level The required log level.
      */
     void setLevel(Level level) {
         String pkg = calledFromPackage();
         PackageLogger forPkg = determineLoggerFor(pkg);
-        if (!forPkg.getPack().equals(pkg)) { 
+        if (!forPkg.getPack().equals(pkg)) {
             setLogger(pkg, new PackageLogger(pkg, forPkg.getLogger(), level));
-        }
-        else {
+        } else {
             forPkg.setLevel(level);
         }
     }
-    
+
     private void setLogger(String pkg, PackageLogger pkgLogger) {
         packageLoggers.put(pkg, pkgLogger);
     }
-    
+
     // Private constructor since we only want a singleton. 
     private Router() {
     }
-   
+
     /**
      * Recursively find a logger by shortening the package name until we find
      * one.
@@ -126,15 +127,20 @@ final class Router extends SecurityManager {
     private String calledFromPackage() {
         Class[] contex = getClassContext();
         int idx = 0;
-        String pack = "";
+        String name = "";
         while (idx < contex.length) {
-            pack = contex[idx].getPackage().getName();
-            if (!pack.equals(Log.class.getPackage().getName())) {
-                break;
+            Package pkg = contex[idx].getPackage();
+            if (pkg != null) {
+                name = pkg.getName();
+                if (!name.equals(Log.class.getPackage().getName())) {
+                    return name;
+                }
+            } else {  // it was null, so we're no longer in the logger package but we have no package name
+                return "";
             }
             idx++;
         }
-        return pack;
+        return name;
     }
 
 }
