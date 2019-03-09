@@ -1,8 +1,3 @@
-Loge - Log (Extensible) 
-
-![He is creepy and is watching][logo]
-
-[logo]: https://bitbucket.org/adeptict/log/raw/19c38dad02fa27add24e33402d46bb782b20425d/logelogo.jpg "Logo Title"
 
 | Value | Severity  |Description |
 |-------|-----------|------------|
