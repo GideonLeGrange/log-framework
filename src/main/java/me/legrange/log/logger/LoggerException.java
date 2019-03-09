@@ -1,4 +1,4 @@
-package za.co.adept.log.logger;
+package me.legrange.log.logger;
 
 /**
  *

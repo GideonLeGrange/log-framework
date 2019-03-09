@@ -1,11 +1,11 @@
-package za.co.adept.log;
+package me.legrange.log;
 
 import static java.lang.String.format;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import za.co.adept.log.logger.SystemOutLogger;
+import me.legrange.log.logger.SystemOutLogger;
 
 /**
  * This class works out where to route log requests.

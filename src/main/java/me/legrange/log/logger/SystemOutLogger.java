@@ -1,7 +1,7 @@
-package za.co.adept.log.logger;
+package me.legrange.log.logger;
 
-import za.co.adept.log.Event;
-import za.co.adept.log.Logger;
+import me.legrange.log.Event;
+import me.legrange.log.Logger;
 
 /** 
  * A basic logger implementation that just prints to System.out. Really meant to be used

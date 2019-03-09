@@ -1,11 +1,11 @@
-package za.co.adept.log.logger;
+package me.legrange.log.logger;
 
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import static java.lang.String.format;
-import za.co.adept.log.Event;
-import za.co.adept.log.Logger;
+import me.legrange.log.Event;
+import me.legrange.log.Logger;
 
 /**
  *

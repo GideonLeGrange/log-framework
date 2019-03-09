@@ -1,11 +1,11 @@
-package za.co.adept.log;
+package me.legrange.log;
 
 import java.util.function.Supplier;
-import static za.co.adept.log.Level.CRITICAL;
-import static za.co.adept.log.Level.DEBUG;
-import static za.co.adept.log.Level.ERROR;
-import static za.co.adept.log.Level.INFO;
-import static za.co.adept.log.Level.WARNING;
+import static me.legrange.log.Level.CRITICAL;
+import static me.legrange.log.Level.DEBUG;
+import static me.legrange.log.Level.ERROR;
+import static me.legrange.log.Level.INFO;
+import static me.legrange.log.Level.WARNING;
 import static java.lang.String.format;
 import java.util.Date;
 import java.util.StringJoiner;
