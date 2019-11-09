@@ -1,15 +1,13 @@
 package me.legrange.log;
 
+import static java.lang.String.format;
+import java.util.Date;
 import java.util.function.Supplier;
 import static me.legrange.log.Level.CRITICAL;
 import static me.legrange.log.Level.DEBUG;
 import static me.legrange.log.Level.ERROR;
 import static me.legrange.log.Level.INFO;
 import static me.legrange.log.Level.WARNING;
-import static java.lang.String.format;
-import java.util.Date;
-import java.util.StringJoiner;
-import static java.lang.String.format;
 
 /**
  * The log interface. Use this class to add logging to your code.
@@ -45,7 +43,7 @@ public final class Log {
      * @param args The message arguments
      */
     public static void critical(Throwable ex, String fmt, Object... args) {
-        log(CRITICAL, ex, ex.getMessage(), fmt, args);
+        log(CRITICAL, ex, fmt, args);
     }
 
     /**
@@ -64,7 +62,7 @@ public final class Log {
      * @param ex The exception
      */
     public static void error(Throwable ex) {
-            log(ERROR, ex, ex.getMessage());
+        log(ERROR, ex, ex.getMessage());
     }
 
     /**
@@ -105,7 +103,7 @@ public final class Log {
      * @param args The message arguments
      */
     public static void warning(Throwable ex, String fmt, Object... args) {
-        log(WARNING, ex, ex.getMessage(), fmt, args);
+        log(WARNING, ex, fmt, args);
     }
 
     /**
@@ -137,36 +135,39 @@ public final class Log {
     public static void debug(Supplier<String> msg) {
         log(DEBUG, () -> new Event(msg.get(), new Date(), DEBUG, null));
     }
-    
-    /** Set the default application logger. Only call this from your application's main code. This
-     * must not be called by libraries. 
-     * 
-     * @param logger 
+
+    /**
+     * Set the default application logger. Only call this from your
+     * application's main code. This must not be called by libraries.
+     *
+     * @param logger
      */
     public static void setDefaultLogger(Logger logger) {
         Router.getInstance().setDefaultLogger(logger);
     }
-    
-    /** Set the default logging level. Only call this from your application's main code. This
-     * must not be called by libraries. 
-     * 
+
+    /**
+     * Set the default logging level. Only call this from your application's
+     * main code. This must not be called by libraries.
+     *
      * @param level The default level to set.
      */
     public static void setDefaultLevel(Level level) {
         Router.getInstance().setDefaultLevel(level);
     }
-    
-    /** Set the logger for the package calling the logger. 
-     * 
+
+    /**
+     * Set the logger for the package calling the logger.
+     *
      * @param logger
      */
     public static void setLogger(Logger logger) {
         Router.getInstance().setLogger(logger);
     }
-    
-    
-    /** Set the log level for the package calling the logger. 
-     * 
+
+    /**
+     * Set the log level for the package calling the logger.
+     *
      * @param level The log level
      */
     public static void setLevel(Level level) {
@@ -193,7 +194,7 @@ public final class Log {
      * @param ex The exception that we're logging
      */
     private static void log(Level level, Throwable ex, String fmt, Object... args) {
-        final String strFmt =  (fmt != null) ? fmt : "";
+        final String strFmt = (fmt != null) ? fmt : "";
         log(level, () -> new Event(format(strFmt, args), new Date(), level, ex));
     }
 
