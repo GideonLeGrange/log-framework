@@ -14,9 +14,11 @@ import me.legrange.log.Logger;
 public class FileLogger implements Logger {
 
     private final PrintWriter out;
+    private final String fileName;
 
     public FileLogger(String fileName) throws LoggerException {
         out = openFile(fileName);
+        this.fileName = fileName;
     }
 
     @Override
@@ -25,7 +27,12 @@ public class FileLogger implements Logger {
         out.flush();
     }
 
-    protected final PrintWriter openFile(String fileName) throws LoggerException {
+    @Override
+    public String getName() {
+        return format("%s[%s]", getClass().getSimpleName(), fileName);
+    }
+
+    private final PrintWriter openFile(String fileName) throws LoggerException {
         try {
             return new PrintWriter(new FileWriter(fileName, true));
         } catch (IOException ex) {

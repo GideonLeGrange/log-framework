@@ -13,6 +13,9 @@ public interface Logger {
      * @param entry The logged event
      */
     void log(Event entry);
-    
-    
+
+    /** Return the logger name */
+    default String getName() {
+        return getClass().getSimpleName();
+    }
 }
