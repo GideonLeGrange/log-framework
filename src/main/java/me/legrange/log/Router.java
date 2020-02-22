@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import me.legrange.log.logger.SystemOutLogger;
+import me.legrange.log.logger.ConsoleLogger;
 
 /**
  * This class works out where to route log requests.
@@ -15,7 +15,7 @@ import me.legrange.log.logger.SystemOutLogger;
 final class Router extends SecurityManager {
 
     private static final Router INSTANCE = new Router();
-    private PackageLogger DEFAULT = new PackageLogger("", new SystemOutLogger(), Level.INFO);
+    private PackageLogger DEFAULT = new PackageLogger("", new ConsoleLogger(), Level.INFO);
     private Map<String, PackageLogger> packageLoggers = new HashMap<>();
 
     /**
