@@ -20,8 +20,12 @@ public class NumberedExceptionLogger implements Logger {
     private final PrintWriter out;
 
     public NumberedExceptionLogger(Logger logger, String exceptionFile) throws LoggerException {
+        this(logger, openFile(exceptionFile));
+    }
+
+    public NumberedExceptionLogger(Logger logger, PrintWriter exceptionOut) throws LoggerException {
         this.logger = logger;
-        out = openFile(exceptionFile);
+        out = exceptionOut;
     }
 
     @Override
@@ -31,7 +35,7 @@ public class NumberedExceptionLogger implements Logger {
             entry = new Event(entry.getMessage() + format(" [%s]", id), entry.getTimestamp(), entry.getLevel(), entry.getThrowable().get());
             writeToFile(id, entry);
         }
-        logger.log(entry);
+        logger.log(new Event(entry.getMessage(), entry.getTimestamp(), entry.getLevel()));
     }
 
     private String getId() {
@@ -44,7 +48,7 @@ public class NumberedExceptionLogger implements Logger {
         out.flush();
     }
 
-    protected final PrintWriter openFile(String fileName) throws LoggerException {
+    private static PrintWriter openFile(String fileName) throws LoggerException {
         try {
             return new PrintWriter(new FileWriter(fileName, true));
         } catch (IOException ex) {

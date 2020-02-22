@@ -10,3 +10,7 @@ target/
 # Netbeans 
 nb-configuration.xml
 nbactions.xml
+
+# IntelliJ 
+*.iml
+.idea 
