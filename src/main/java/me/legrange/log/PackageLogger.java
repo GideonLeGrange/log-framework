@@ -29,10 +29,8 @@ final class PackageLogger {
         return level;
     }
 
-  void setLevel(Level level) {
+    void setLevel(Level level) {
         this.level = level;
     }
-    
-    
 
 }

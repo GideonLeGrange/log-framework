@@ -140,7 +140,7 @@ public final class Log {
      * Set the default application logger. Only call this from your
      * application's main code. This must not be called by libraries.
      *
-     * @param logger
+     * @param logger The logger to use as default
      */
     public static void setDefaultLogger(Logger logger) {
         Router.getInstance().setDefaultLogger(logger);
@@ -159,10 +159,19 @@ public final class Log {
     /**
      * Set the logger for the package calling the logger.
      *
-     * @param logger
+     * @param logger The logger to use for the package calling the method
      */
     public static void setLogger(Logger logger) {
         Router.getInstance().setLogger(logger);
+    }
+
+    /**
+     * Set the logger for the given name.
+     *
+     * @param logger The logger to use for the package calling the given name
+     */
+    public static void setLogger(String name, Logger logger) {
+        Router.getInstance().setLogger(name, logger);
     }
 
     /**
@@ -172,6 +181,16 @@ public final class Log {
      */
     public static void setLevel(Level level) {
         Router.getInstance().setLevel(level);
+    }
+
+    /**
+     * Set the log level for the given name.
+     *
+     * @param name The name for which to set the level
+     * @param level The log level
+     */
+    public static void setLevel(String name, Level level) {
+        Router.getInstance().setLevel(name, level);
     }
 
     /**

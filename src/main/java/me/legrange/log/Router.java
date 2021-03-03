@@ -73,9 +73,17 @@ final class Router extends SecurityManager {
      * @param logger The logger to use.
      */
     synchronized void setLogger(Logger logger) {
-        String pkg = calledFromPackage();
-        PackageLogger forPkg = determineLoggerFor(pkg);
-        setLogger(pkg, new PackageLogger(pkg, logger, forPkg.getLevel()));
+        setLogger(calledFromPackage(), logger);
+    }
+
+    /**
+     * Set the logger for given name (should be a package but can be any name really)
+     *
+     * @param logger The logger to use.
+     */
+    synchronized void setLogger(String name, Logger logger) {
+        PackageLogger forName = determineLoggerFor(name);
+        setLogger(name, new PackageLogger(name, logger, forName.getLevel()));
     }
 
     /**
@@ -84,10 +92,19 @@ final class Router extends SecurityManager {
      * @param level The required log level.
      */
     void setLevel(Level level) {
-        String pkg = calledFromPackage();
-        PackageLogger forPkg = determineLoggerFor(pkg);
-        if (!forPkg.getPack().equals(pkg)) {
-            setLogger(pkg, new PackageLogger(pkg, forPkg.getLogger(), level));
+        setLevel(calledFromPackage(), level);
+    }
+
+    /**
+     * Set the log level for the given name.
+     *
+     * @name name The name for which to set the level.
+     * @param level The required log level.
+     */
+    void setLevel(String name, Level level) {
+        PackageLogger forPkg = determineLoggerFor(name);
+        if (!forPkg.getPack().equals(name)) {
+            setLogger(name, new PackageLogger(name, forPkg.getLogger(), level));
         } else {
             forPkg.setLevel(level);
         }

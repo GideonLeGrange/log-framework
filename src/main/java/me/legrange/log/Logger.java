@@ -14,7 +14,10 @@ public interface Logger {
      */
     void log(Event entry);
 
-    /** Return the logger name */
+    /** Return the logger name
+     *
+     * @return The name of the logger
+     */
     default String getName() {
         return getClass().getSimpleName();
     }
