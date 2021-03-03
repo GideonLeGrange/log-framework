@@ -1,3 +1,5 @@
+[![Java CI with Maven](https://github.com/GideonLeGrange/log-framework/actions/workflows/maven.yml/badge.svg)](https://github.com/GideonLeGrange/log-framework/actions/workflows/maven.yml)
+
 
 | Value | Severity  |Description |
 |-------|-----------|------------|
