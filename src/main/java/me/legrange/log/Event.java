@@ -2,6 +2,7 @@ package me.legrange.log;
 
 import java.util.Date;
 import java.util.Optional;
+import java.util.UUID;
 
 /**
  * A log entry
@@ -10,6 +11,7 @@ import java.util.Optional;
  */
 public final class Event {
 
+    private final UUID uuid = UUID.randomUUID();
     private final String message;
     private final Date timestamp;
     private final Level level;
@@ -60,5 +62,13 @@ public final class Event {
      */
     public Optional<Throwable> getThrowable() {
         return throwable;
+    }
+
+    /** Get the UUID for this event
+     *
+     * @return The UUID
+     */
+    public UUID getUuid() {
+        return uuid;
     }
 }

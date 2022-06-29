@@ -114,7 +114,6 @@ final class Router extends SecurityManager {
         packageLoggers.put(pkg, pkgLogger);
     }
 
-    // Private constructor since we only want a singleton. 
     private Router() {
     }
 
@@ -152,7 +151,7 @@ final class Router extends SecurityManager {
                 if (!name.equals(Log.class.getPackage().getName())) {
                     return name;
                 }
-            } else {  // it was null, so we're no longer in the logger package but we have no package name
+            } else {  // it was null, so we're no longer in the logger package, but we have no package name
                 return "";
             }
             idx++;

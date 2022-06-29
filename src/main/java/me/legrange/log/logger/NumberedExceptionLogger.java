@@ -31,15 +31,11 @@ public class NumberedExceptionLogger implements Logger {
     @Override
     public synchronized void log(Event entry) {
         if (entry.getThrowable().isPresent()) {
-            String id = getId();
+            String id = entry.getUuid().toString();
             entry = new Event(entry.getMessage() + format(" [%s]", id), entry.getTimestamp(), entry.getLevel(), entry.getThrowable().get());
             writeToFile(id, entry);
         }
         logger.log(new Event(entry.getMessage(), entry.getTimestamp(), entry.getLevel()));
-    }
-
-    private String getId() {
-        return UUID.randomUUID().toString();
     }
 
     private void writeToFile(String id, Event entry) {
