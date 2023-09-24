@@ -1,8 +1,9 @@
 package me.legrange.log;
 
-import static java.lang.String.format;
 import java.util.Date;
 import java.util.function.Supplier;
+
+import static java.lang.String.format;
 import static me.legrange.log.Level.CRITICAL;
 import static me.legrange.log.Level.DEBUG;
 import static me.legrange.log.Level.ERROR;
@@ -19,7 +20,7 @@ public final class Log {
     /**
      * Log critical event.
      *
-     * @param fmt The message format string
+     * @param fmt  The message format string
      * @param args The message arguments
      */
     public static void critical(String fmt, Object... args) {
@@ -38,8 +39,8 @@ public final class Log {
     /**
      * Log an exception as a critical error.
      *
-     * @param ex The exception
-     * @param fmt The message format string
+     * @param ex   The exception
+     * @param fmt  The message format string
      * @param args The message arguments
      */
     public static void critical(Throwable ex, String fmt, Object... args) {
@@ -49,7 +50,7 @@ public final class Log {
     /**
      * Log error event.
      *
-     * @param fmt The message format string
+     * @param fmt  The message format string
      * @param args The message arguments
      */
     public static void error(String fmt, Object... args) {
@@ -68,8 +69,8 @@ public final class Log {
     /**
      * Log an exception as an error.
      *
-     * @param ex The exception
-     * @param fmt The message format string
+     * @param ex   The exception
+     * @param fmt  The message format string
      * @param args The message arguments
      */
     public static void error(Throwable ex, String fmt, Object... args) {
@@ -79,7 +80,7 @@ public final class Log {
     /**
      * Log warning event.
      *
-     * @param fmt The message format string
+     * @param fmt  The message format string
      * @param args The message arguments
      */
     public static void warning(String fmt, Object... args) {
@@ -98,8 +99,8 @@ public final class Log {
     /**
      * Log an exception as a warning.
      *
-     * @param ex The exception
-     * @param fmt The message format string
+     * @param ex   The exception
+     * @param fmt  The message format string
      * @param args The message arguments
      */
     public static void warning(Throwable ex, String fmt, Object... args) {
@@ -109,7 +110,7 @@ public final class Log {
     /**
      * Log informational event.
      *
-     * @param fmt The message format string
+     * @param fmt  The message format string
      * @param args The message arguments
      */
     public static void info(String fmt, Object... args) {
@@ -119,7 +120,7 @@ public final class Log {
     /**
      * Log debug event.
      *
-     * @param fmt The message format string
+     * @param fmt  The message format string
      * @param args The message arguments
      */
     public static void debug(String fmt, Object... args) {
@@ -186,7 +187,7 @@ public final class Log {
     /**
      * Set the log level for the given name.
      *
-     * @param name The name for which to set the level
+     * @param name  The name for which to set the level
      * @param level The log level
      */
     public static void setLevel(String name, Level level) {
@@ -197,8 +198,8 @@ public final class Log {
      * Log an event with the given level event.
      *
      * @param level The log level to use
-     * @param fmt The message format string
-     * @param args The message arguments
+     * @param fmt   The message format string
+     * @param args  The message arguments
      */
     private static void log(Level level, String fmt, Object... args) {
         log(level, () -> new Event(format(fmt, args), new Date(), level, null));
@@ -208,9 +209,9 @@ public final class Log {
      * Log an event with an exception.
      *
      * @param level The log level to use
-     * @param fmt The message format string
-     * @param args The message arguments
-     * @param ex The exception that we're logging
+     * @param fmt   The message format string
+     * @param args  The message arguments
+     * @param ex    The exception that we're logging
      */
     private static void log(Level level, Throwable ex, String fmt, Object... args) {
         final String strFmt = (fmt != null) ? fmt : "";
@@ -231,7 +232,9 @@ public final class Log {
                 pl.getLogger().log(entry.get());
             } catch (Throwable ex) {
                 StackTraceElement el = findErrorLine(ex);
-                pl.getLogger().log(new Event(format("Error while logging at %s:%d: '%s'", el.getFileName(), el.getLineNumber(), ex.getMessage()), new Date(), ERROR, ex));
+                if (el != null) {
+                    pl.getLogger().log(new Event(format("Error while logging at %s:%d: '%s'", el.getFileName(), el.getLineNumber(), ex.getMessage()), new Date(), ERROR, ex));
+                }
             }
         }
     }

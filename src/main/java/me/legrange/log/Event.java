@@ -15,13 +15,13 @@ public final class Event {
     private final String message;
     private final Date timestamp;
     private final Level level;
-    private final Optional<Throwable> throwable;
+    private final Throwable throwable;
 
     public Event(String message, Date timestamp, Level level, Throwable throwable) {
         this.message = message;
         this.timestamp = timestamp;
         this.level = level;
-        this.throwable = Optional.ofNullable(throwable);
+        this.throwable = throwable;
     }
 
     public Event(String message, Date timestamp, Level level) {
@@ -61,7 +61,7 @@ public final class Event {
      * @return An optional exception
      */
     public Optional<Throwable> getThrowable() {
-        return throwable;
+        return Optional.ofNullable(throwable);
     }
 
     /** Get the UUID for this event

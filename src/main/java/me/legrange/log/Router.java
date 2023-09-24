@@ -1,11 +1,11 @@
 package me.legrange.log;
 
-import static java.lang.String.format;
+import me.legrange.log.logger.ConsoleLogger;
+
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import me.legrange.log.logger.ConsoleLogger;
 
 /**
  * This class works out where to route log requests.
@@ -16,7 +16,7 @@ final class Router extends SecurityManager {
 
     private static final Router INSTANCE = new Router();
     private PackageLogger DEFAULT = new PackageLogger("", new ConsoleLogger(), Level.INFO);
-    private Map<String, PackageLogger> packageLoggers = new HashMap<>();
+    private final Map<String, PackageLogger> packageLoggers = new HashMap<>();
 
     /**
      * Get the singleton router instance.
@@ -34,8 +34,7 @@ final class Router extends SecurityManager {
      */
     PackageLogger route() {
         String pack = calledFromPackage();
-        String find = pack;
-        PackageLogger logger = packageLoggers.get(find);
+        PackageLogger logger = packageLoggers.get(pack);
         if (logger == null) {
             logger = determineLoggerFor(pack);
             packageLoggers.put(pack, logger);
@@ -49,14 +48,9 @@ final class Router extends SecurityManager {
      * @param def The logger
      */
     synchronized void setDefaultLogger(Logger def) {
-        if (!DEFAULT.getPack().equals("")) {
-            throw new IllegalStateException(format("The default logger is already set. It was called from %s. Either your application or that library is calling setDefaultLogger() incorrectly", DEFAULT.getPack()));
-        }
-        List<String> toRemove = new LinkedList();
-        packageLoggers.entrySet().stream().filter((ent) -> (ent.getValue() == DEFAULT)).forEachOrdered((ent) -> {
-            toRemove.add(ent.getKey());
-        });
-        toRemove.forEach(pack -> packageLoggers.remove(pack));
+        List<String> toRemove = new LinkedList<>();
+        packageLoggers.entrySet().stream().filter((ent) -> (ent.getValue() == DEFAULT)).forEachOrdered((ent) -> toRemove.add(ent.getKey()));
+        toRemove.forEach(packageLoggers::remove);
         DEFAULT = new PackageLogger(calledFromPackage(), def, Level.INFO);
     }
 
@@ -141,7 +135,7 @@ final class Router extends SecurityManager {
      * @return The package name
      */
     private String calledFromPackage() {
-        Class[] contex = getClassContext();
+        Class<?>[] contex = getClassContext();
         int idx = 0;
         String name = "";
         while (idx < contex.length) {
