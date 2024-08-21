@@ -195,6 +195,24 @@ public final class  Log {
         Router.getInstance().setLevel(name, level);
     }
 
+    public static Animation animate() {
+        PackageLogger pl = Router.getInstance().route();
+        if (pl.getLogger() instanceof  AnimatedLogger) {
+            return ((AnimatedLogger) pl.getLogger()).start();
+        }
+        return new Animation() {
+            @Override
+            public void update(String message) {
+
+            }
+
+            @Override
+            public void close() {
+
+            }
+        };
+    }
+
     /**
      * Log an event with the given level event.
      *

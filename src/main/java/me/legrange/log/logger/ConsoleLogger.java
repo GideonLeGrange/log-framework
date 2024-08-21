@@ -1,9 +1,15 @@
 package me.legrange.log.logger;
 
+import me.legrange.log.AnimatedLogger;
+import me.legrange.log.Animation;
 import me.legrange.log.Event;
 import me.legrange.log.Logger;
 
-/** 
+import java.util.Stack;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+
+/**
  * A basic logger implementation that prints to System.out, with exceptions going to System.err
  *
  * @author gideon
@@ -17,5 +23,5 @@ public final class ConsoleLogger implements Logger {
             entry.getThrowable().get().printStackTrace(System.err);
         }
     }
-    
+
 }
