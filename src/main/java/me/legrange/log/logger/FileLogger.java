@@ -23,7 +23,7 @@ public final class FileLogger implements Logger {
 
     @Override
     public void log(Event entry) {
-        out.printf("%s [%s]: %s\n", entry.getTimestamp(), entry.getLevel(), entry.getMessage());
+        out.printf(Standard.format(entry));
         out.flush();
     }
 
