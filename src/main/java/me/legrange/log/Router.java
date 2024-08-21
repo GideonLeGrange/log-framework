@@ -1,6 +1,6 @@
 package me.legrange.log;
 
-import me.legrange.log.logger.ConsoleLogger;
+import me.legrange.log.logger.console.ConsoleLogger;
 
 import java.util.HashMap;
 import java.util.LinkedList;

@@ -208,7 +208,10 @@ public final class  Log {
 
             @Override
             public void close() {
+            }
 
+            @Override
+            public void updateProgress(int done, int total, String message) {
             }
         };
     }

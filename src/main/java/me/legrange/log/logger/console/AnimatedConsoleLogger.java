@@ -1,4 +1,4 @@
-package me.legrange.log.logger;
+package me.legrange.log.logger.console;
 
 import me.legrange.log.AnimatedLogger;
 import me.legrange.log.Animation;
@@ -31,7 +31,7 @@ public final class AnimatedConsoleLogger implements AnimatedLogger {
 
     @Override
     public Animation start() {
-        ConsoleAnimation animation = new ConsoleAnimation();
+        ConsoleAnimation animation = new ConsoleAnimation(this);
         animations.push(animation);
         return animation;
     }
@@ -52,24 +52,6 @@ public final class AnimatedConsoleLogger implements AnimatedLogger {
     private void clear() {
         if (!animations.empty()) {
             System.out.print("\r");
-        }
-    }
-
-    private final class ConsoleAnimation implements Animation {
-        private String message;
-
-        public void update(String message) {
-            this.message = message;
-            AnimatedConsoleLogger.this.update(this, message);
-        }
-
-        @Override
-        public void close() {
-            AnimatedConsoleLogger.this.end(this);
-        }
-
-        public String getMessage() {
-            return message;
         }
     }
 
