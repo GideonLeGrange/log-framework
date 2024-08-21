@@ -1,22 +1,33 @@
 package me.legrange.log;
 
 /**
- * A logging level 
+ * A logging level
+ *
  * @author gideon
  */
 public enum Level {
-    
-    
-    CRITICAL(0), ERROR(1), WARNING(2), INFO(3), DEBUG(4);
-    
+
+
+    CRITICAL(0, "💥"),
+    ERROR(1, "⚡️"),
+    WARNING(2, "⚠️"),
+    INFO(3, "ℹ️"),
+    DEBUG(4, "🔍");
+
+    private final int code;
+    private final String emoji;
+
     public int code() {
         return code;
     }
-    
-    private Level(int code) {
-        this.code = code;
+
+    public String emoji() {
+        return emoji;
     }
 
-    private final int code;
-    
+    Level(int code, String emoji) {
+        this.code = code;
+        this.emoji = emoji;
+    }
+
 }
