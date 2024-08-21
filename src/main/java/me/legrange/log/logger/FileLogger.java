@@ -15,15 +15,21 @@ public final class FileLogger implements Logger {
 
     private final PrintWriter out;
     private final String fileName;
+    private final boolean useEmoji;
 
-    public FileLogger(String fileName) throws LoggerException {
+    public FileLogger(String fileName, boolean useEmoji) throws LoggerException {
         out = openFile(fileName);
         this.fileName = fileName;
+        this.useEmoji = useEmoji;
+    }
+
+    public FileLogger(String fileName) throws LoggerException {
+        this(fileName, false);
     }
 
     @Override
     public void log(Event entry) {
-        out.printf(Standard.format(entry));
+        out.printf(Standard.format(entry, useEmoji));
         out.flush();
     }
 

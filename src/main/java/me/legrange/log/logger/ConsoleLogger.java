@@ -10,9 +10,19 @@ import me.legrange.log.Logger;
  */
 public final class ConsoleLogger implements Logger {
 
+    private final boolean useEmoji;
+
+    public ConsoleLogger(boolean useEmoji) {
+        this.useEmoji = useEmoji;
+    }
+
+    public ConsoleLogger() {
+        this(false);
+    }
+
     @Override
     public void log(Event entry) {
-        System.out.printf(Standard.format(entry));
+        System.out.printf(Standard.format(entry, useEmoji));
         if (entry.getThrowable().isPresent()) {
             entry.getThrowable().get().printStackTrace(System.err);
         }
