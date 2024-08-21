@@ -6,7 +6,7 @@
 
 # Maven 
 target/
-
+pom.xml.versionsBackup
 # Netbeans 
 nb-configuration.xml
 nbactions.xml
