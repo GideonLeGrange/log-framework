@@ -11,7 +11,7 @@ import me.legrange.log.Logger;
  *
  * @author gideon
  */
-public class FileLogger implements Logger {
+public final class FileLogger implements Logger {
 
     private final PrintWriter out;
     private final String fileName;
@@ -32,7 +32,7 @@ public class FileLogger implements Logger {
         return format("%s[%s]", getClass().getSimpleName(), fileName);
     }
 
-    private final PrintWriter openFile(String fileName) throws LoggerException {
+    private PrintWriter openFile(String fileName) throws LoggerException {
         try {
             return new PrintWriter(new FileWriter(fileName, true));
         } catch (IOException ex) {

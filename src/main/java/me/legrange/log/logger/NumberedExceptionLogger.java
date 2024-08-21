@@ -14,7 +14,7 @@ import me.legrange.log.Logger;
  *
  * @author gideon
  */
-public class NumberedExceptionLogger implements Logger {
+public final class NumberedExceptionLogger implements Logger {
 
     private final Logger logger;
     private final PrintWriter out;

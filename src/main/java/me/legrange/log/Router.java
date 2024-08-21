@@ -92,7 +92,7 @@ final class Router extends SecurityManager {
     /**
      * Set the log level for the given name.
      *
-     * @name name The name for which to set the level.
+     * @param  name The name for which to set the level.
      * @param level The required log level.
      */
     void setLevel(String name, Level level) {
@@ -135,11 +135,11 @@ final class Router extends SecurityManager {
      * @return The package name
      */
     private String calledFromPackage() {
-        Class<?>[] contex = getClassContext();
+        Class<?>[] context = getClassContext();
         int idx = 0;
         String name = "";
-        while (idx < contex.length) {
-            Package pkg = contex[idx].getPackage();
+        while (idx < context.length) {
+            Package pkg = context[idx].getPackage();
             if (pkg != null) {
                 name = pkg.getName();
                 if (!name.equals(Log.class.getPackage().getName())) {

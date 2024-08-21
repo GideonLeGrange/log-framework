@@ -12,7 +12,7 @@
         <maven.compiler.target>1.8</maven.compiler.target>
     </properties>
 
-    <name>Logging Libray</name>
+    <name>Logging Library</name>
     <description>An easy to use extensible log library</description>
     <url>https://github.com/GideonLeGrange/log-framework</url>
     <developers>

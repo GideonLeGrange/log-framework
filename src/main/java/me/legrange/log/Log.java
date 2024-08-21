@@ -15,7 +15,8 @@ import static me.legrange.log.Level.WARNING;
  *
  * @author gideon
  */
-public final class Log {
+@SuppressWarnings("unused")
+public final class  Log {
 
     /**
      * Log critical event.

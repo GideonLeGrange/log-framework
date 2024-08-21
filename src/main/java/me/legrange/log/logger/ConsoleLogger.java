@@ -8,7 +8,7 @@ import me.legrange.log.Logger;
  *
  * @author gideon
  */
-public class ConsoleLogger implements Logger {
+public final class ConsoleLogger implements Logger {
 
     @Override
     public void log(Event entry) {

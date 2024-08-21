@@ -6,6 +6,7 @@ package me.legrange.log;
  * 
  * @author gideon
  */
+@SuppressWarnings("unused")
 public interface Logger {
     
     /** Log a message with the given level 
