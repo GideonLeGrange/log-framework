@@ -12,7 +12,7 @@ public final class ConsoleLogger implements Logger {
 
     @Override
     public void log(Event entry) {
-        System.out.printf("%s [%s]: %s\n", entry.getTimestamp(), entry.getLevel(), entry.getMessage());
+        System.out.printf("\r%s [%s]: %s\n", entry.getTimestamp(), entry.getLevel(), entry.getMessage());
         if (entry.getThrowable().isPresent()) {
             entry.getThrowable().get().printStackTrace(System.err);
         }
